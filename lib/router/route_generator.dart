@@ -1,4 +1,5 @@
 import 'package:bubu_market/screens/auth_screens/authscreen.dart';
+import 'package:bubu_market/widgets/general_widgets/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/auth_screens/login_page.dart';
@@ -11,10 +12,15 @@ class RouteGenerator {
   static const login = '/login';
   static const signup = '/signup';
   static const homescreen = '/homescreen';
+  static const actualHomeBar = '/actual-home-bar';
   static Route<dynamic> generateRoute(RouteSettings settings) {
     //getting arguments passed in while calling navigator.pushnamed
 
     switch (settings.name) {
+      case actualHomeBar:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const BottomBar());
       case auth:
         return MaterialPageRoute(
           settings: settings,

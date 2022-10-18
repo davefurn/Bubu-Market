@@ -53,7 +53,6 @@ class _SignUpState extends State<SignUp> {
       statusBarIconBrightness: Brightness.light,
     ));
     return Scaffold(
-      backgroundColor: Color(0xff232726),
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: ConstrainedBox(

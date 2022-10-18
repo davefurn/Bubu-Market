@@ -1,14 +1,11 @@
-import 'dart:async';
 import 'dart:convert';
 
-
-import 'package:bubu_market/screens/auth_screens/login_page.dart';
+import 'package:bubu_market/router/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:bubu_market/constants/global_variables.dart';
 import 'package:bubu_market/constants/error_handling.dart';
-
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,10 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/utils.dart';
 import '../models/user.dart';
 import '../providers/user_provider.dart';
-import '../router/custom_page_builder.dart';
-import '../screens/home/homescreen.dart';
-
-
 
 class AuthService {
   //sign up user
@@ -80,7 +73,6 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      print(res.body);
       httpErrorHandle(
           response: res,
           context: context,
@@ -92,10 +84,50 @@ class AuthService {
             Provider.of<UserProvider>(context, listen: false).setUser(res.body);
             Navigator.pushNamedAndRemoveUntil(
               context,
-              "/HomeScreen",
+              RouteGenerator.actualHomeBar,
               (route) => false,
             );
           });
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  //get user data
+  void getUserData({
+   required BuildContext context,
+  }) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString('x-auth-token');
+
+      if (token == null) {
+        prefs.setString('x-auth-token', '');
+      }
+
+      var tokenRes = await http.post(
+        Uri.parse('$uri/tokenIsValid'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': token!
+        },
+      );
+      var response = jsonDecode(tokenRes.body);
+
+      if (response == true) {
+        //get user data
+        http.Response userRes = await http.get(
+          Uri.parse('$uri/'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-auth-token': token
+          },
+        );
+
+        var userProvider = Provider.of<UserProvider>(context, listen: false);
+        userProvider.setUser(userRes.body);
+      }
+      
     } catch (e) {
       showSnackBar(context, e.toString());
     }
@@ -153,11 +185,11 @@ class SuccessAlertDialog extends StatelessWidget {
                     minimumSize: const Size(220, 60), //////// HERE
                   ),
                   onPressed: () {
-                     Navigator.pushNamedAndRemoveUntil(
-              context,
-              "/login",
-              (route) => false,
-            );
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      "/login",
+                      (route) => false,
+                    );
                   },
                   child: Text(
                     'Now Sign In',

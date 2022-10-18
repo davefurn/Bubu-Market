@@ -1,18 +1,40 @@
+import 'package:bubu_market/providers/user_provider.dart';
 import 'package:bubu_market/router/route_generator.dart';
+import 'package:bubu_market/screens/auth_screens/authscreen.dart';
 import 'package:bubu_market/themes/themes_constants.dart';
 import 'package:bubu_market/themes/themes_manager.dart';
+import 'package:bubu_market/widgets/general_widgets/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'services/auth_services.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+    ),
+  ], child: const MyApp()));
 }
 
 ThemeManager _themeManager = ThemeManager();
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final AuthService authService = AuthService();
   // This widget is the root of your application.
+  @override
+  void initState() {
+    super.initState();
+    authService.getUserData(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,9 +43,9 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: _themeManager.themeMode,
-      initialRoute: RouteGenerator.auth,
-       onGenerateRoute: RouteGenerator.generateRoute,
+      
+      onGenerateRoute: RouteGenerator.generateRoute,
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty ? const BottomBar() : const AuthScreen(),
     );
   }
 }
-
