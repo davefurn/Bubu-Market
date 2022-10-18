@@ -7,6 +7,9 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: GlobalVariables.scaffoldBackGroundColor,
   brightness: Brightness.light,
   primaryColor: GlobalVariables.colorPrimary,
+  iconTheme: const IconThemeData(
+    color: GlobalVariables.colorSecondary
+  ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: GlobalVariables.colorAccent
   ),

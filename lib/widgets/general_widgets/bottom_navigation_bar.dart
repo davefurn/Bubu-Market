@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:bubu_market/constants/colors.dart';
+import 'package:bubu_market/screens/accounts/accounts_screen.dart';
 import 'package:bubu_market/screens/home/homescreen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const Center(child: Text('Account Page'),),
+    AccountScreen(),
     const Center(child: Text('Cart Page'),),
   ];
   void updatePage(int page) {
