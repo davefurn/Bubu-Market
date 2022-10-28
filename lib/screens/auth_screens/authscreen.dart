@@ -3,7 +3,7 @@ import 'package:bubu_market/screens/auth_screens/sign_up.dart';
 import 'package:bubu_market/widgets/auth_widgets/long_button.dart';
 import 'package:bubu_market/widgets/general_widgets/sized_boxes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 import '../../router/custom_page_builder.dart';
 import 'login_page.dart';

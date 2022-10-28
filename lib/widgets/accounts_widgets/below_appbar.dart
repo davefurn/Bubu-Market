@@ -36,7 +36,8 @@ class BelowAppBar extends StatelessWidget {
                     text: user.name,
                     style: textTheme.headlineLarge?.copyWith(
                       fontSize: 17,
-                      color: GlobalVariables.colorSecondary
+                      color: GlobalVariables.colorSecondary,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],

@@ -2,6 +2,9 @@ import 'package:bubu_market/constants/colors.dart';
 import 'package:bubu_market/widgets/accounts_widgets/below_appbar.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/accounts_widgets/orders.dart';
+import '../../widgets/accounts_widgets/top_buttons.dart';
+
 class AccountScreen extends StatefulWidget {
   AccountScreen({Key? key}) : super(key: key);
 
@@ -30,31 +33,43 @@ class _AccountScreenState extends State<AccountScreen> {
                 child: Image.asset(
                   "assets/images/black icon + black text.png",
                   width: 150,
-                  height: 50,   
+                  height: 50,
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(left: 15,right: 15,),
+                padding: const EdgeInsets.only(
+                  left: 15,
+                  right: 15,
+                ),
                 child: Row(
                   children: const [
-                    Padding(padding: EdgeInsets.only(right: 15),
-                    child: Icon(Icons.notifications_outlined, color: GlobalVariables.colorSecondary, size: 24,),
+                    Padding(
+                      padding: EdgeInsets.only(right: 15),
+                      child: Icon(
+                        Icons.notifications_outlined,
+                        color: GlobalVariables.colorSecondary,
+                        size: 24,
+                      ),
                     ),
-                    Icon(Icons.search,color: GlobalVariables.colorSecondary, size: 24,),
+                    Icon(
+                      Icons.search,
+                      color: GlobalVariables.colorSecondary,
+                      size: 24,
+                    ),
                   ],
                 ),
               ),
             ],
           ),
         ),
-        
       ),
       body: Column(
         children: const [
           BelowAppBar(),
-          SizedBox(
-            height: 10,
-          ),
+          SizedBox(height: 10),
+          TopButtons(),
+          SizedBox(height: 20),
+          Orders(),
         ],
       ),
     );
