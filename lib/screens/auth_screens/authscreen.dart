@@ -15,7 +15,7 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: Color(0xff232726),
+      backgroundColor: const Color(0xff232726),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -24,7 +24,7 @@ class AuthScreen extends StatelessWidget {
             Image.asset("assets/images/icon + yellow text.png",
           width: 200,
           ),
-          SizedBoxes(height: 50,),
+          const SizedBoxes(height: 50,),
             Text(
               'You need an account\n     to use this app',
               style: textTheme.headlineLarge?.copyWith(

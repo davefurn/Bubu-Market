@@ -2,6 +2,7 @@ import 'package:bubu_market/constants/colors.dart';
 import 'package:bubu_market/widgets/auth_widgets/filling_field_email.dart';
 import 'package:bubu_market/widgets/auth_widgets/filling_field_password.dart';
 import 'package:bubu_market/widgets/auth_widgets/long_button.dart';
+import 'package:bubu_market/widgets/general_widgets/loader.dart';
 import 'package:bubu_market/widgets/general_widgets/sized_boxes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,16 +63,13 @@ class _LoginState extends State<Login> {
             child: Column(children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.35,
-
                 width: double.infinity,
                 decoration: const BoxDecoration(
-                  color: GlobalVariables.colorPrimary,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50),
-                  )
-                ),
-                
+                    color: GlobalVariables.colorPrimary,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                    )),
                 child: SafeArea(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,8 +119,7 @@ class _LoginState extends State<Login> {
                             alignment: Alignment.topLeft,
                             child: Text("Email ",
                                 style: textTheme.headlineSmall?.copyWith(
-                                  color: GlobalVariables.colorSecondary
-                                ))),
+                                    color: GlobalVariables.colorSecondary))),
                         const SizedBoxes(),
                         EmailField(
                           icon: Icons.email,
@@ -161,12 +158,10 @@ class _LoginState extends State<Login> {
                               checkColor: Colors.white,
                               activeColor: Colors.black,
                             ),
-                            Text(
-                              "Agree to terms and conditions",
-                              style: textTheme.headlineMedium?.copyWith(
-                                color: GlobalVariables.colorSecondary,
-                              )
-                            ),
+                            Text("Agree to terms and conditions",
+                                style: textTheme.headlineMedium?.copyWith(
+                                  color: GlobalVariables.colorSecondary,
+                                )),
                           ],
                         ),
                         const SizedBoxes(),
@@ -179,7 +174,7 @@ class _LoginState extends State<Login> {
                                   isLoading == false) {
                                 setState(() => isLoading = true);
                                 await Future.delayed(
-                                  Duration(seconds: 2),
+                                  const Duration(seconds: 2),
                                 );
                                 signinUser();
                                 setState(() => isLoading = false);
@@ -189,11 +184,8 @@ class _LoginState extends State<Login> {
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const CircularProgressIndicator(
-                                        strokeWidth: 3,
-                                        color: GlobalVariables.colorSecondary,
-                                      ),
-                                      SizedBox(width: 24),
+                                      const CustomLoader(),
+                                     const SizedBox(width: 24),
                                       Text(
                                         'Please Wait....',
                                         style: textTheme.headlineMedium
@@ -208,40 +200,42 @@ class _LoginState extends State<Login> {
                                     style: textTheme.headlineMedium?.copyWith(
                                         color: GlobalVariables.colorSecondary),
                                   )),
-                        const SizedBoxes(height: 20,),
-                         Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Already have an account",
-                  style: textTheme.headlineMedium?.copyWith(
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBoxes(
-                  height: 0,
-                  width: 5,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      customPageBuilder(
-                        const SignUp(),
-                        1,
-                        0,
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Create one',
-                    style: textTheme.headlineMedium?.copyWith(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+                        const SizedBoxes(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Already have an account",
+                              style: textTheme.headlineMedium?.copyWith(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            const SizedBoxes(
+                              height: 0,
+                              width: 5,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  customPageBuilder(
+                                    const SignUp(),
+                                    1,
+                                    0,
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Create one',
+                                style: textTheme.headlineMedium?.copyWith(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:bubu_market/router/route_generator.dart';
@@ -44,11 +46,11 @@ class AuthService {
         response: res,
         context: context,
         onSuccess: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const SuccessAlertDialog();
-              });
+          showSnackBar(context, 'Account Created Succeefully');
+          Navigator.pushNamed(
+            context,
+            RouteGenerator.login,
+          );
         },
       );
     } catch (e) {
@@ -89,13 +91,16 @@ class AuthService {
             );
           });
     } catch (e) {
-      showSnackBar(context, e.toString());
+      showSnackBar(
+        context,
+        e.toString(),
+      );
     }
   }
 
   //get user data
   void getUserData({
-   required BuildContext context,
+    required BuildContext context,
   }) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -127,7 +132,6 @@ class AuthService {
         var userProvider = Provider.of<UserProvider>(context, listen: false);
         userProvider.setUser(userRes.body);
       }
-      
     } catch (e) {
       showSnackBar(context, e.toString());
     }

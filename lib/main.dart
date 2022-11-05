@@ -1,5 +1,6 @@
 import 'package:bubu_market/providers/user_provider.dart';
 import 'package:bubu_market/router/route_generator.dart';
+import 'package:bubu_market/screens/admin/admin_screen.dart';
 import 'package:bubu_market/screens/auth_screens/authscreen.dart';
 import 'package:bubu_market/themes/themes_constants.dart';
 import 'package:bubu_market/themes/themes_manager.dart';
@@ -43,9 +44,12 @@ class _MyAppState extends State<MyApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: _themeManager.themeMode,
-      
       onGenerateRoute: RouteGenerator.generateRoute,
-      home: Provider.of<UserProvider>(context).user.token.isNotEmpty ? const BottomBar() : const AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? Provider.of<UserProvider>(context).user.type == 'user'
+              ? const BottomBar()
+              : const AdminScreen()
+          : const AuthScreen(),
     );
   }
 }

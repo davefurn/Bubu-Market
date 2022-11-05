@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:bubu_market/constants/colors.dart';
 import 'package:bubu_market/screens/accounts/accounts_screen.dart';
 import 'package:bubu_market/screens/home/homescreen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
@@ -98,7 +99,7 @@ class _BottomBarState extends State<BottomBar> {
                   badgeContent: const Text('2'),
                   badgeColor: GlobalVariables.colorAccent,
                   child: const Icon(
-                    Icons.shopping_cart_outlined,
+                    CupertinoIcons.cart,
                   )),
             ),
             label: '',

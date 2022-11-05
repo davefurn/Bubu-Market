@@ -3,6 +3,7 @@ import 'package:bubu_market/widgets/auth_widgets/filling_field_email.dart';
 import 'package:bubu_market/widgets/auth_widgets/filling_field_password.dart';
 import 'package:bubu_market/widgets/auth_widgets/filling_fields_username.dart';
 import 'package:bubu_market/widgets/auth_widgets/long_button.dart';
+import 'package:bubu_market/widgets/general_widgets/loader.dart';
 import 'package:bubu_market/widgets/general_widgets/sized_boxes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -196,7 +197,7 @@ class _SignUpState extends State<SignUp> {
                                   isLoading == false) {
                                 setState(() => isLoading = true);
                                 await Future.delayed(
-                                  Duration(seconds: 2),
+                                  const Duration(seconds: 2),
                                 );
                                 signupUser();
                                 setState(() => isLoading = false);
@@ -206,11 +207,8 @@ class _SignUpState extends State<SignUp> {
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const CircularProgressIndicator(
-                                        strokeWidth: 3,
-                                        color: GlobalVariables.colorSecondary,
-                                      ),
-                                      SizedBox(width: 24),
+                                      const CustomLoader(),
+                                      const SizedBox(width: 24),
                                       Text(
                                         'Please Wait....',
                                         style: textTheme.headlineMedium

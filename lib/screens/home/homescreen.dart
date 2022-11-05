@@ -1,8 +1,13 @@
+import 'package:bubu_market/widgets/home_widgets/address_box.dart';
+import 'package:bubu_market/widgets/home_widgets/top_categories.dart';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 import '../../constants/colors.dart';
-import '../../providers/user_provider.dart';
+import '../../widgets/home_widgets/carousel_widget.dart';
+import '../../widgets/home_widgets/deal_of_day.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
  
   @override
   Widget build(BuildContext context) {
-     final user = Provider.of<UserProvider>(context).user;
+     
     return Scaffold(
        appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -78,7 +83,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Center(child: Text(user.toJson(),)),
+      body: SingleChildScrollView(
+        child: Column(
+          children:const [
+             AddressBox(),
+             SizedBox(height: 10),
+             TopCatgories(),
+             SizedBox(height: 10),
+             CarouselImage(),
+             DealOfDay(),
+          ],
+        ),
+      )
     );
   }
 }
