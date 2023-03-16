@@ -1,24 +1,95 @@
+import 'package:bubu_market/constants/utils.dart';
+import 'package:bubu_market/screens/home/home_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:bubu_market/constants/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CarouselImage extends StatelessWidget {
-  const CarouselImage({super.key});
+import '../../models/collection_list.dart';
+
+class HomeBannerView extends ConsumerWidget {
+  const HomeBannerView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    SizeConfig().init(context);
+    final collectionList = ref.watch(homeBannerListProvider);
+    final indicator = ref.watch(homeBannerIndicator);
+    return collectionList.when(
+      data: (list) => Column(
+        children: [
+          CarouselSlider(
+            items: list
+                .map((e) => HomeBannerItemView(
+                      collection: e!,
+                    ))
+                .toList(),
+            options: CarouselOptions(
+              viewportFraction: 1,
+              height: 300,
+              onPageChanged: (index, reason) {
+                ref.read(homeBannerIndicator.notifier).state = index;
+              },
+            ),
+          ),
+        ],
+      ),
+      error: (e, s) =>  Text("$e"),
+      loading: () => const SizedBox(
+        height: 300,
+        child: Center(
+          child: CircularProgressIndicator(color: GlobalVariables.colorSecondary,),
+        ),
+      ),
+    );
+  }
+}
+
+class HomeBannerItemView extends StatelessWidget {
+  const HomeBannerItemView({required this.collection, Key? key})
+      : super(key: key);
+  final Collection collection;
 
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
-      items: GlobalVariables.carouselImages.map(
-        (i) {
-        return Builder(
-          builder: (BuildContext context) => Image.network(i, fit: BoxFit.cover, height: 200,),
-        );
+    return InkWell(
+      onTap: () {
+        // Navigator.pushNamed(
+        //   context,
+        //   AppRoutes.productList,
+        //   arguments: collection,
+        // );
       },
-      ).toList(),
-      options: CarouselOptions(
-        viewportFraction: 1,
-        height: 200,
-        autoPlay: true,
+      child: Card(
+        elevation: 1,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        child: Stack(
+          children: [
+            CachedNetworkImage(
+              imageUrl: collection.image!.src.toString(),
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(6)),
+                  image:
+                      DecorationImage(image: imageProvider, fit: BoxFit.cover),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16, bottom: 16),
+                child: Text(
+                  collection.title.toString(),
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

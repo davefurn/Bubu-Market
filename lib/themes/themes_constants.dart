@@ -33,7 +33,7 @@ ThemeData lightTheme = ThemeData(
     headlineSmall: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w400,),
   ),
   inputDecorationTheme: InputDecorationTheme(
-    contentPadding: const EdgeInsets.all(17),
+
         hintStyle: const TextStyle(fontSize: 14, color: Color(0xffb5b9bc)),
         border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),

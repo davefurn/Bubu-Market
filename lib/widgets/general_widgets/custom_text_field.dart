@@ -19,14 +19,19 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardtype,
       controller: controller,
       decoration: InputDecoration(
+        
+        filled: true,
+        fillColor: Colors.white,
+        prefixIcon: Icon(Icons.email_outlined),
           hintText: hintText,
-          border: const OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black38,
+          border:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10) ,
+              borderSide: const BorderSide(
+            color: Colors.white,
           )),
           enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(
-            color: Colors.black38,
+            color: Colors.white,
           ))),
       validator: (val) {
         if (val == null || val.isEmpty) {

@@ -8,8 +8,9 @@ import 'package:bubu_market/constants/utils.dart';
 import 'Products Cards/product_card_type2.dart';
 
 
-class DealOfDay extends StatelessWidget {
-  const DealOfDay({super.key});
+class RecentlyViewedItems extends StatelessWidget {
+  const RecentlyViewedItems({super.key});
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -18,15 +19,19 @@ class DealOfDay extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: Container(
+             height: getProportionateScreenHeight(40),
+            width:  double.infinity,
+            color: const Color(0xff3F4E5D),
             alignment: Alignment.topLeft,
             padding: EdgeInsets.only(
                 left: getProportionateScreenWidth(10),
                 top: getProportionateScreenHeight(15)),
             child: Text(
-              'Best Selling Products',
+              'Recently Viewed Items',
               style: GoogleFonts.nunito(
-                fontSize: 19,
+                fontSize: 21,
                 fontWeight: FontWeight.w700,
+                color: Colors.white
               ),
             ),
           ),
