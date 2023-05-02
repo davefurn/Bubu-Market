@@ -15,7 +15,9 @@ final sharedPreferences =
     FutureProvider((_) async => await SharedPreferences.getInstance());
 
 final sharedPreferencesHelper = Provider(
-    (ref) => SharedPreferencesHelper(ref.watch(sharedPreferences).maybeWhen(
+    (ref) => SharedPreferencesHelper(
+      
+      ref.watch(sharedPreferences).maybeWhen(
           data: (value) => value,
           orElse: () => null,
         )));
@@ -33,7 +35,7 @@ final apiRepository = Provider((ref) => ApiRepository(
 
 
 
-void main() {
+main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -51,8 +53,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: _themeManager.themeMode,
-      initialRoute: AppRoutes.main,
+      themeMode: _themeManager.themeMode,      initialRoute: AppRoutes.main,
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

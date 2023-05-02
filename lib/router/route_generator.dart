@@ -15,11 +15,14 @@ abstract class AppRoutes {
     return MaterialPageRoute(
         settings: settings,
         builder: (_) {
+          
           switch (settings.name) {
             case main:
+              print("moving to home");
               return MainView();
- 
+
             default:
+            
               return const Home();
           }
         });

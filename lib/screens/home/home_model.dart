@@ -1,6 +1,8 @@
 import 'package:bubu_market/constants/key_util.dart';
 import 'package:bubu_market/data/respository/api_respository.dart';
 import 'package:bubu_market/main.dart';
+import 'package:bubu_market/models/collection_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -28,8 +30,9 @@ class HomeViewModel with ChangeNotifier {
 
 final homeBannerListProvider = FutureProvider((ref) {
   return Future.wait(KeyUtil.homeBanner
-      .map((e) => ref.read(apiRepository).getCollectionsById(e))
+      .map((e) => ref.read(apiRepository).getCollectionsById())
       .toList());
 });
 
 final homeBannerIndicator = StateProvider((ref) => 0);
+

@@ -1,123 +1,122 @@
 class CollectionList {
   CollectionList({
-    this.collection,
+    this.billboards,
   });
 
   CollectionList.fromJson(dynamic json) {
-    collection = json['collection'] != null
-        ? Collection.fromJson(json['collection'])
+    billboards = json['billboards'] != null
+        ? Billboards.fromJson(json['billboards'])
         : null;
   }
 
-  Collection? collection;
+  Billboards? billboards;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (collection != null) {
-      map['collection'] = collection?.toJson();
+    if (billboards != null) {
+      map['billboards'] = billboards?.toJson();
     }
     return map;
   }
 }
 
-class Collection {
-  Collection({
+class Billboards {
+  Billboards({
     this.id,
-    this.handle,
-    this.title,
-    this.updatedAt,
-    this.bodyHtml,
-    this.publishedAt,
-    this.sortOrder,
-    this.templateSuffix,
-    this.productsCount,
-    this.collectionType,
-    this.publishedScope,
-    this.adminGraphqlApiId,
-    this.image,
+    this.owner,
+    this.date_created,
+    this.date_updated,
+    this.banner,
   });
 
-  Collection.fromJson(dynamic json) {
+  Billboards.fromJson(dynamic json) {
     id = json['id'];
-    handle = json['handle'];
-    title = json['title'];
-    updatedAt = json['updated_at'];
-    bodyHtml = json['body_html'];
-    publishedAt = json['published_at'];
-    sortOrder = json['sort_order'];
-    templateSuffix = json['template_suffix'];
-    productsCount = json['products_count'];
-    collectionType = json['collection_type'];
-    publishedScope = json['published_scope'];
-    adminGraphqlApiId = json['admin_graphql_api_id'];
-    image = json['image'] != null ? Image.fromJson(json['image']) : null;
+    owner = json['owner'] != null ? Owner.fromJson(json['owner']) : null;
+    date_created = json['date_created'];
+    date_updated = json['date_updated'];
+    banner = json['banner'];
   }
 
   int? id;
-  String? handle;
-  String? title;
-  String? updatedAt;
-  String? bodyHtml;
-  String? publishedAt;
-  String? sortOrder;
-  String? templateSuffix;
-  int? productsCount;
-  String? collectionType;
-  String? publishedScope;
-  String? adminGraphqlApiId;
-  Image? image;
+  Owner? owner;
+  String? date_created;
+  String? date_updated;
+  String? banner;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
-    map['handle'] = handle;
-    map['title'] = title;
-    map['updated_at'] = updatedAt;
-    map['body_html'] = bodyHtml;
-    map['published_at'] = publishedAt;
-    map['sort_order'] = sortOrder;
-    map['template_suffix'] = templateSuffix;
-    map['products_count'] = productsCount;
-    map['collection_type'] = collectionType;
-    map['published_scope'] = publishedScope;
-    map['admin_graphql_api_id'] = adminGraphqlApiId;
-    if (image != null) {
-      map['image'] = image?.toJson();
+     if (owner != null) {
+      map['owner'] = owner?.toJson();
     }
+    map['date_created'] = date_created;
+    map['date_updated'] = date_updated;
+    map['banner'] = banner;
+
+   
     return map;
   }
 }
 
-class Image {
-  Image({
-    this.createdAt,
-    this.alt,
-    this.width,
-    this.height,
-    this.src,
+class Owner {
+  Owner({
+    this.id,
+    this.last_login,
+    this.is_superuser,
+    this.username,
+    this.first_name,
+    this.last_name,
+    this.email,
+    this.is_staff,
+    this.is_active,
+    this.date_joined,
+    this.groups,
+    this.user_permissions,
   });
 
-  Image.fromJson(dynamic json) {
-    createdAt = json['created_at'];
-    alt = json['alt'];
-    width = json['width'];
-    height = json['height'];
-    src = json['src'];
+  Owner.fromJson(dynamic json) {
+    id = json['id'];
+    last_login = json['last_login'];
+    is_superuser = json['is_superuser'];
+    username = json['username'];
+    first_name = json['first_name'];
+    last_name = json['last_name'];
+    email = json['email'];
+    is_staff = json['is_staff'];
+    is_active = json['is_active'];
+    date_joined = json['date_joined'];
+    groups = json['groups'];
+    user_permissions = json['user_permissions'];
   }
 
-  String? createdAt;
-  dynamic alt;
-  int? width;
-  int? height;
-  String? src;
+  int? id;
+  String? last_login;
+  bool? is_superuser;
+  String? username;
+  String? first_name;
+  String? last_name;
+  String? email;
+  bool? is_staff;
+  bool? is_active;
+  String? date_joined;
+  List<String>? groups;
+  List<String>? user_permissions;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['created_at'] = createdAt;
-    map['alt'] = alt;
-    map['width'] = width;
-    map['height'] = height;
-    map['src'] = src;
+    map['id'] = id;
+    map['last_login'] = last_login;
+    map['is_superuser'] = is_superuser;
+    map['username'] = username;
+    map['first_name'] = first_name;
+    map['last_name'] = last_name;
+    map['email'] = email;
+    map['is_staff'] = is_staff;
+    map['is_active'] = is_active;
+    map['date_joined'] = date_joined;
+    map['groups'] = groups;
+    map['user_permissions'] = user_permissions;
+
     return map;
   }
 }

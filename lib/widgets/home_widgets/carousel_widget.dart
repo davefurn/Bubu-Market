@@ -16,15 +16,20 @@ class HomeBannerView extends ConsumerWidget {
     SizeConfig().init(context);
     final collectionList = ref.watch(homeBannerListProvider);
     final indicator = ref.watch(homeBannerIndicator);
+      print("running homebannerview consumer widget");
+
+      print( "collectionList: ${collectionList.toString()}");
+
     return collectionList.when(
       data: (list) => Column(
         children: [
           CarouselSlider(
-            items: list
-                .map((e) => HomeBannerItemView(
-                      collection: e!,
-                    ))
-                .toList(),
+            items: list.map((e) {
+              print("$e");
+              return HomeBannerItemView(
+                collection: e!,
+              );
+            }).toList(),
             options: CarouselOptions(
               viewportFraction: 1,
               height: 300,
@@ -33,13 +38,31 @@ class HomeBannerView extends ConsumerWidget {
               },
             ),
           ),
+           Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: list.asMap().entries.map((entry) {
+                    return Container(
+                      width: 9,
+                      height: 9,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 3),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: GlobalVariables.scaffoldBackGroundColor
+                              .withOpacity(indicator == entry.key ? 1 : 0.3)),
+                    );
+                  }).toList(),
+                ),
         ],
+        
       ),
-      error: (e, s) =>  Text("$e"),
+      error: (e, s) => Text("$e"),
       loading: () => const SizedBox(
         height: 300,
         child: Center(
-          child: CircularProgressIndicator(color: GlobalVariables.colorSecondary,),
+          child: CircularProgressIndicator(
+            color: GlobalVariables.colorSecondary,
+          ),
         ),
       ),
     );
@@ -49,7 +72,7 @@ class HomeBannerView extends ConsumerWidget {
 class HomeBannerItemView extends StatelessWidget {
   const HomeBannerItemView({required this.collection, Key? key})
       : super(key: key);
-  final Collection collection;
+  final Billboards collection;
 
   @override
   Widget build(BuildContext context) {
@@ -68,21 +91,23 @@ class HomeBannerItemView extends StatelessWidget {
         child: Stack(
           children: [
             CachedNetworkImage(
-              imageUrl: collection.image!.src.toString(),
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(6)),
-                  image:
-                      DecorationImage(image: imageProvider, fit: BoxFit.cover),
-                ),
-              ),
-            ),
+                imageUrl: collection.banner.toString(),
+                imageBuilder: (context, imageProvider) {
+                  print (collection.banner.toString());
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  );
+                }),
             Align(
               alignment: Alignment.bottomLeft,
               child: Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 16),
                 child: Text(
-                  collection.title.toString(),
+                  collection.owner!.id.toString(),
                   style: Theme.of(context).textTheme.headline5!.copyWith(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),

@@ -3,35 +3,35 @@ import 'package:bubu_market/constants/key_util.dart';
 import 'package:bubu_market/constants/path.dart';
 
 class PathUtil {
-  static Path root() {
-    return Path.fromPath("");
+  static Paths root() {
+    return Paths.fromPath("");
   }
 
-  static Path productsPath() {
+  static Paths productsPath() {
     return root().child(KeyUtil.products);
   }
 
-  static Path productsPathById(int id) {
+  static Paths productsPathById(int id) {
     return productsPath().child(id.toString());
   }
 
-  static Path productsCountPath() {
+  static Paths productsCountPath() {
     return productsPath().child(KeyUtil.count);
   }
 
-  static Path customCollectionsPath() {
+  static Paths customCollectionsPath() {
     return root().child(KeyUtil.customCollections);
   }
 
-  static Path collectsPath() {
+  static Paths collectsPath() {
     return root().child(KeyUtil.collects);
   }
 
-  static Path collectionsPathById(int id) {
-    return root().child(KeyUtil.collections).child(id.toString());
+  static Paths collectionsPathById() {
+    return root().child(KeyUtil.collections);
   }
 
-  static Path collectionsProductsPathById(int id) {
+  static Paths collectionsProductsPathById(int id) {
     return root()
         .child(KeyUtil.collections)
         .child(id.toString())

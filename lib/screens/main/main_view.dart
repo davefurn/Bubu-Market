@@ -26,6 +26,7 @@ class _MainViewState extends ConsumerState<MainView> {
 
   @override
   void initState() {
+    
     for (var element in dataList) {
       data.add(Menu.fromJson(element));
     }

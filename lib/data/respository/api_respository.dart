@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bubu_market/constants/path_util.dart';
 import 'package:bubu_market/extension/rx_lift_error.dart';
 import 'package:bubu_market/models/collection_list.dart';
@@ -23,7 +25,7 @@ class ApiRepository {
     }).first;
   }
 
- Future<List<Products>> getProductsByCollectionId(int id) {
+  Future<List<Products>> getProductsByCollectionId(int id) {
     return apiService
         .get(path: PathUtil.productsPath(), params: {"collection_id": id})
         .asStream()
@@ -34,14 +36,16 @@ class ApiRepository {
         .first;
   }
 
-  Future<Collection?> getCollectionsById(int id) {
-     return apiService
-        .get(path: PathUtil.collectionsPathById(id))
+  Future<Billboards?> getCollectionsById() {
+    print(PathUtil.collectionsPathById());
+    return apiService
+        .get(path: PathUtil.collectionsPathById())
         .asStream()
         .liftError()
         .map((Response response) {
-      return CollectionList.fromJson(response.data).collection;
+      print('Response: ${CollectionList.fromJson(response.data).billboards}');
+
+      return CollectionList.fromJson(response.data).billboards;
     }).first;
   }
- 
 }

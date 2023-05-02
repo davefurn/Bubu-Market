@@ -18,7 +18,8 @@ class ApiService {
   void _initApiClient() {
     dio
       // ..interceptors.add(LogInterceptor())
-      ..interceptors.add(PrettyDioLogger(
+      ..interceptors.add(
+        PrettyDioLogger(
           requestBody: true,
           responseBody: true,
           requestHeader: true,
@@ -26,8 +27,11 @@ class ApiService {
           compact: false))
       ..options.baseUrl = Endpoints.baseUrl;
 
-    dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
+    dio.interceptors.add(InterceptorsWrapper(
+     
+      onRequest: (options, handler) {
       // Do something before request is sent
+      
       options.headers[""] = KeyUtil.token;
 
       return handler.next(options); //continue
@@ -49,7 +53,8 @@ class ApiService {
   }
 
   Future<Response> get(
-      {required Path path, Map<String, dynamic>? params}) async {
+      {required Paths path, Map<String, dynamic>? params}) async {
+    print(path.toString());
     return await dio.get(path.toString(), queryParameters: params);
   }
 }

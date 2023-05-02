@@ -1,4 +1,4 @@
-class Path {
+class Paths {
   List<String> components = <String>[];
 
   ///
@@ -12,14 +12,14 @@ class Path {
   ///
   String? remainder;
 
-  Path(List<String> path) {
+  Paths(List<String> path) {
     for (var s in path) {
       components.add(s);
     }
   }
 
-  Path.fromPath(String path) {
-    Path(path.split("/").toList());
+  Paths.fromPath(String path) {
+    Paths(path.split("/").toList());
   }
 
   String first() {
@@ -50,17 +50,17 @@ class Path {
     return "${path.substring(0, path.length - 1)}.json";
   }
 
-  Path child(String child) {
+  Paths child(String child) {
     components.add(child);
     return this;
   }
 
-  Path children(List<String> children) {
+  Paths children(List<String> children) {
     components.addAll(children);
     return this;
   }
 
-  Path removeLast() {
+  Paths removeLast() {
     if (components.isNotEmpty) {
       components.removeLast();
     }

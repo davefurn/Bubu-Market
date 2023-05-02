@@ -71,3 +71,20 @@ double getProportionateScreenWidth(double inputWidth) {
   // 375 is the layout width that designer use
   return (inputWidth / 375.0) * screenWidth;
 }
+
+final RegExp emailValidatorRegExp =
+    RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+const String kEmailNullError = "Please enter your email";
+const String kInvalidEmailError = "Please enter valid email";
+const String kPassNullError = "Please enter your password";
+const String kPassNull2Error = "Please enter a valid password";
+const String kShortPassError = "Password is too short";
+const String kMatchPassError = "Passwords don't match";
+const String kNamelNullError = "Please Enter your name";
+const String kPhoneNumberNullError = "Please enter your phone number";
+const String kdetailsNullError = "Your suggestion is empty";
+const String kDetailNumberError =
+    "Your suggestion should be at least 20 characters";
+const String kNotSimilarPasswordError = "Not Similar Password";
+final RegExp passWordalidatorExp = RegExp(r"^.{6,}$");
+const String kvalidatePhoneNumber = "Phone number is not valid";

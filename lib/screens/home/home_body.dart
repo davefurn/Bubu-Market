@@ -1,4 +1,4 @@
-import 'package:bubu_market/screens/main/main_view_model.dart';
+import 'package:bubu_market/screens/home/home_model.dart';
 import 'package:bubu_market/widgets/general_widgets/permnent_bottom_container.dart';
 import 'package:bubu_market/widgets/home_widgets/almost_sold_out.dart';
 import 'package:bubu_market/widgets/home_widgets/our_collection.dart';
@@ -24,18 +24,15 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ScrollController homeController = ScrollController();
-
   
 
-   
-
     return SingleChildScrollView(
-      controller: homeController,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const ContactUs(),
+          ContactUs(
+            
+          ),
           const TopCatgories(),
           const HomeBannerView(),
           const DealOfDay(),
@@ -91,7 +88,6 @@ class Home extends ConsumerWidget {
       ),
     );
   }
-  
 }
 
 // class MoveTo{
