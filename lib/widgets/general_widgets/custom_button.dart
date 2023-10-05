@@ -1,10 +1,18 @@
+import 'package:bubu_market/constants/Utils.dart';
 import 'package:bubu_market/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/Utils.dart';
-
-
 class CustomButton extends StatelessWidget {
+  const CustomButton({
+    required this.text,
+    required this.onpressed,
+    required this.thickLine,
+    super.key,
+    this.hpD,
+    this.color,
+    this.textcolor,
+    this.borderColor,
+  });
   final double? hpD;
   final String text;
   final VoidCallback onpressed;
@@ -12,8 +20,6 @@ class CustomButton extends StatelessWidget {
   final Color? textcolor;
   final Color? borderColor;
   final double thickLine;
-  const CustomButton(
-      {super.key, this.hpD, required this.text, required this.onpressed, this.color, this.textcolor, required this.thickLine, this.borderColor});
 
   @override
   Widget build(BuildContext context) {

@@ -1,29 +1,25 @@
-import 'package:bubu_market/constants/colors.dart';
-import 'package:bubu_market/widgets/home_widgets/Products%20Cards/product_type_3.dart';
+import 'package:bubu_market/constants/utils.dart';
+import 'package:bubu_market/widgets/home_widgets/Products%20Cards/product_card_type2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:bubu_market/constants/utils.dart';
-
-import 'Products Cards/product_card_type2.dart';
 
 class InterestingFinds extends StatelessWidget {
   const InterestingFinds({super.key});
 
- 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.only(top: 8),
           child: Container(
             alignment: Alignment.topLeft,
             padding: EdgeInsets.only(
-                left: getProportionateScreenWidth(10),
-                right: getProportionateScreenWidth(10),
-                top: getProportionateScreenHeight(15)),
+              left: getProportionateScreenWidth(10),
+              right: getProportionateScreenWidth(10),
+              top: getProportionateScreenHeight(15),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -55,13 +51,9 @@ class InterestingFinds extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisExtent: 305,
-            
-              
             ),
             itemCount: 4,
-            itemBuilder: (context, index) {
-              return ProductCardType2(index: index);
-            },
+            itemBuilder: (context, index) => ProductCardType2(index: index),
           ),
         )
       ],

@@ -6,16 +6,14 @@ class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => const Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children:const  [
+          children:[
             RecentlyViewedItems(),
             PermanentBox(),
           ],
         ),
       ),
     );
-  }
 }

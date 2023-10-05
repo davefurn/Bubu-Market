@@ -1,12 +1,7 @@
-
-import 'package:bubu_market/widgets/home_widgets/Products%20Cards/product_card_discout_ratings.dart';
+import 'package:bubu_market/constants/utils.dart';
+import 'package:bubu_market/widgets/home_widgets/Products%20Cards/product_card_type2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:bubu_market/constants/utils.dart';
-
-import 'Products Cards/product_card_type2.dart';
-
 
 class BackToSchool extends StatelessWidget {
   const BackToSchool({super.key});
@@ -17,13 +12,14 @@ class BackToSchool extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.only(top: 8),
           child: Container(
             alignment: Alignment.topLeft,
             padding: EdgeInsets.only(
-                left: getProportionateScreenWidth(10),
-                right: getProportionateScreenWidth(10),
-                top: getProportionateScreenHeight(15)),
+              left: getProportionateScreenWidth(10),
+              right: getProportionateScreenWidth(10),
+              top: getProportionateScreenHeight(15),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -53,14 +49,12 @@ class BackToSchool extends StatelessWidget {
           child: ListView.builder(
             itemCount: 7,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return ProductCardType2(index: index,);
-            },
+            itemBuilder: (context, index) => ProductCardType2(
+              index: index,
+            ),
           ),
         )
       ],
     );
   }
 }
-
-

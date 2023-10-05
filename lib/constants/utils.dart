@@ -3,7 +3,12 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-void showSnackBar(BuildContext context, String text, {Color? color , Color? textColor}) {
+void showSnackBar(
+  BuildContext context,
+  String text, {
+  Color? color,
+  Color? textColor,
+}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: color,
@@ -16,14 +21,17 @@ void showSnackBar(BuildContext context, String text, {Color? color , Color? text
       // },
       //   ), for cart add adding items
       width: MediaQuery.of(context).size.width * .87,
-      content: Text(text, style: TextStyle(
-        color: textColor,
-      ),),
+      content: Text(
+        text,
+        style: TextStyle(
+          color: textColor,
+        ),
+      ),
     ),
   );
 }
 
-Future<List<File>>pickImages() async {
+Future<List<File>> pickImages() async {
   List<File> images = [];
 
   try {
@@ -36,12 +44,11 @@ Future<List<File>>pickImages() async {
         images.add(File(files.files[i].path!));
       }
     }
-  } catch (e) {
+  } on Exception catch (e) {
     debugPrint(e.toString());
   }
   return images;
 }
-
 
 class SizeConfig {
   static late MediaQueryData _mediaQueryData;
@@ -73,18 +80,18 @@ double getProportionateScreenWidth(double inputWidth) {
 }
 
 final RegExp emailValidatorRegExp =
-    RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-const String kEmailNullError = "Please enter your email";
-const String kInvalidEmailError = "Please enter valid email";
-const String kPassNullError = "Please enter your password";
-const String kPassNull2Error = "Please enter a valid password";
-const String kShortPassError = "Password is too short";
+    RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+const String kEmailNullError = 'Please enter your email';
+const String kInvalidEmailError = 'Please enter valid email';
+const String kPassNullError = 'Please enter your password';
+const String kPassNull2Error = 'Please enter a valid password';
+const String kShortPassError = 'Password is too short';
 const String kMatchPassError = "Passwords don't match";
-const String kNamelNullError = "Please Enter your name";
-const String kPhoneNumberNullError = "Please enter your phone number";
-const String kdetailsNullError = "Your suggestion is empty";
+const String kNamelNullError = 'Please Enter your name';
+const String kPhoneNumberNullError = 'Please enter your phone number';
+const String kdetailsNullError = 'Your suggestion is empty';
 const String kDetailNumberError =
-    "Your suggestion should be at least 20 characters";
-const String kNotSimilarPasswordError = "Not Similar Password";
-final RegExp passWordalidatorExp = RegExp(r"^.{6,}$");
-const String kvalidatePhoneNumber = "Phone number is not valid";
+    'Your suggestion should be at least 20 characters';
+const String kNotSimilarPasswordError = 'Not Similar Password';
+final RegExp passWordalidatorExp = RegExp(r'^.{6,}$');
+const String kvalidatePhoneNumber = 'Phone number is not valid';

@@ -1,157 +1,134 @@
-import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesHelper {
-  final SharedPreferences? _prefs;
+class LocalStorage {
+  LocalStorage._init();
+  static final LocalStorage instance = LocalStorage._init();
+  static SharedPreferences? _prefs;
+  final String firstTime = 'firstTime';
+  final String email = 'email';
+  final String password = 'password';
+  final String phone = 'phone';
+  final String accesstoken = 'token';
+  final String refreshtoken = 'rtoken';
+  final String firstName = 'firstName';
+  final String lastName = 'lastName';
 
-  SharedPreferencesHelper(this._prefs);
-
-  // get bool
-  bool getBool(String key, {bool defValue = false}) {
-    if (_prefs == null) return defValue;
-    return _prefs!.getBool(key) ?? defValue;
+  Future<SharedPreferences> get prefs async {
+    if (_prefs != null) {
+      return _prefs!;
+    }
+    _prefs = await SharedPreferences.getInstance();
+    return _prefs!;
   }
 
-  // put bool
-  Future<bool> putBool(String key, bool value) {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.setBool(key, value);
+  Future<bool> setFirstTime() async {
+    var pref = await instance.prefs;
+    return pref.setBool(firstTime, true);
   }
 
-  // get int
-  int getInt(String key, {int defValue = -1}) {
-    if (_prefs == null) return defValue;
-    return _prefs!.getInt(key) ?? defValue;
+  Future<bool> getFirstTime() async {
+    var pref = await instance.prefs;
+    var isNotFirstTime = pref.getBool(firstTime) ?? false;
+    if (isNotFirstTime) {
+      return false;
+    }
+    await setFirstTime();
+    return true;
   }
 
-  // put int.
-  Future<bool> putInt(String key, int value) {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.setInt(key, value);
+  Future<bool> setEmail(String value) async {
+    var pref = await instance.prefs;
+    return pref.setString(email, value);
   }
 
-  // get double
-  double? getDouble(String key) {
-    if (_prefs == null) return null;
-    return _prefs!.getDouble(key);
+  Future<bool> setFirstName(String value) async {
+    var pref = await instance.prefs;
+    return pref.setString(firstName, value);
   }
 
-  // put double
-  Future<bool> putDouble(String key, double value) {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.setDouble(key, value);
+  Future<bool> setLastName(String value) async {
+    var pref = await instance.prefs;
+    return pref.setString(lastName, value);
   }
 
-  // get string
-  String getString(String key, {String defValue = ''}) {
-    if (_prefs == null) return defValue;
-    return _prefs!.getString(key) ?? defValue;
+  Future<String?> getFirstName() async {
+    var pref = await instance.prefs;
+    return pref.getString(firstName);
   }
 
-  // put string
-  Future<bool> putString(String key, String value) {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.setString(key, value);
+  Future<String?> getLastName() async {
+    var pref = await instance.prefs;
+    return pref.getString(lastName);
   }
 
-  // get string list
-  List<String> getStringList(String key, {List<String> defValue = const []}) {
-    if (_prefs == null) return defValue;
-    return _prefs!.getStringList(key) ?? defValue;
+  Future<bool> setPassword(String value) async {
+    var pref = await instance.prefs;
+    return pref.setString(password, value);
   }
 
-  // put string list
-  Future<bool> putStringList(String key, List<String> value) {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.setStringList(key, value);
+  Future<bool> setPhoneNumber(String value) async {
+    var pref = await instance.prefs;
+    return pref.setString(phone, value);
   }
 
-  // get object
-  Map<String, dynamic>? getObj(String key) {
-    if (_prefs == null) return null;
-    String? data = _prefs!.getString(key);
-    return (data == null || data.isEmpty)
-        ? null
-        : json.decode(data) as Map<String, dynamic>;
+  Future<String?> getPhone() async {
+    var pref = await instance.prefs;
+    return pref.getString(phone);
   }
 
-  // put object
-  Future<bool> putObj(String key, Map<String, dynamic>? value) {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.setString(key, value == null ? "" : json.encode(value));
+  Future<String?> getPassword() async {
+    var pref = await instance.prefs;
+    return pref.getString(password);
   }
 
-  // get object with mapper fun
-  T? getObject<T>(String key, T Function(Map<String, dynamic> v) f,
-      {T? defValue}) {
-    Map<String, dynamic>? map = getObj(key);
-    return map == null ? defValue : f(map);
+  Future<String?> getEmail() async {
+    var pref = await instance.prefs;
+    return pref.getString(email);
   }
 
-  // put object with mapper fun
-  Future<bool> putObject(String key, String Function()? toString) {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.setString(key, toString == null ? "" : toString());
+  Future<bool> setAccessToken(String value) async {
+    var pref = await instance.prefs;
+    return pref.setString(accesstoken, value);
   }
 
-  // get object list
-  List<Map>? getObjList(String key) {
-    if (_prefs == null) return null;
-    List<String>? dataLis = _prefs!.getStringList(key);
-    return dataLis?.map((value) {
-      Map dataMap = json.decode(value);
-      return dataMap;
-    }).toList();
+  Future<String?> getAccessToken() async {
+    var pref = await instance.prefs;
+    return pref.getString(accesstoken);
   }
 
-  // get obj list with mapper fun
-  List<T> getObjectList<T>(String key, T Function(Map v) f,
-      {List<T> defValue = const []}) {
-    List<Map>? dataList = getObjList(key);
-    List<T>? list = dataList?.map((value) {
-      return f(value);
-    }).toList();
-    return list ?? defValue;
+  Future<bool> setRefreshToken(String value) async {
+    var pref = await instance.prefs;
+    return pref.setString(refreshtoken, value);
   }
 
-  // put object list
-  Future<bool> putObjectList(String key, List<Object> list) {
-    if (_prefs == null) return Future.value(false);
-
-    List<String>? dataList = list.map((value) {
-      return json.encode(value);
-    }).toList();
-    return _prefs!.setStringList(key, dataList);
+  Future<String?> getRefreshToken() async {
+    var pref = await instance.prefs;
+    return pref.getString(refreshtoken);
   }
 
-  // get dynamic
-  dynamic getDynamic(String key, {dynamic defValue}) {
-    if (_prefs == null) return defValue;
-    return _prefs!.get(key) ?? defValue;
-  }
+  // Future<void> saveUserData(LoginData data) async {
+  //   var pref = await instance.prefs;
+  //   await pref.setString(accesstoken, data.token.accessToken);
+  //   await pref.setString(refreshtoken, data.token.refreshToken);
+  //   await pref.setString(firstName, data.firstName);
+  //   await pref.setString(firstName, data.lastName);
+  //   await pref.setString(email, data.email);
+  // }
 
-  // have key
-  bool haveKey(String key) {
-    if (_prefs == null) return false;
-    return _prefs!.getKeys().contains(key);
-  }
+  // Future<LoginData> getUserData() async {
+  //   var pref = await instance.prefs;
+  //   var lastName_ = pref.getString(lastName)!;
+  //   var firstName_ = pref.getString(firstName)!;
+  //   var email_ = pref.getString(email)!;
+  //   var phoneNumber_ = pref.getString(phone)!;
+  //   var token_ = Token(refreshToken: refreshtoken, accessToken: accesstoken);
 
-  // get keys
-  Set<String>? getKeys() {
-    if (_prefs == null) return null;
-    return _prefs!.getKeys();
-  }
-
-  // remove
-  Future<bool> remove(String key) {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.remove(key);
-  }
-
-  // clear
-  Future<bool> clear() {
-    if (_prefs == null) return Future.value(false);
-    return _prefs!.clear();
-  }
+  //   return LoginData(
+  //     email: email_,
+  //     firstName: firstName_,
+  //     token: token_,
+  //     lastName: lastName_,
+  //     phoneNumber: phoneNumber_,
+  //   );
+  // }
 }

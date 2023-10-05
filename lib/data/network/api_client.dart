@@ -1,60 +1,117 @@
+import 'dart:developer';
+import 'dart:io';
 import 'package:bubu_market/constants/key_util.dart';
-import 'package:bubu_market/constants/path.dart';
-import 'package:bubu_market/data/network/endpoints.dart';
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import '../sharedpref/shared_preferences_helper.dart';
 
-class ApiService {
-  late Dio dio;
-  SharedPreferencesHelper sharedPrefsHelper;
+class NetworkService {
+  static final Dio _dio = Dio();
 
-  ApiService(this.sharedPrefsHelper) {
-    dio = Dio();
-    _initApiClient();
+  Future<Response?> postRequestHandler(
+    String path,
+    Map<String, dynamic>? data, {
+    Options? options,
+  }) async {
+    try {
+      final a = await _dio.postUri(
+        Uri.parse('${KeyUtil.baseUrl}$path'),
+        data: data,
+        options: options,
+      );
+      log(a.data.toString());
+      return a;
+    } on DioException catch (e) {
+      log(e.response.toString());
+      // if (e.response?.statusCode == 401 && e.response != null) {
+      // await PostRequest.refreshToken();
+      // try {
+      //   return await _dio.postUri(
+      //     Uri.parse('${AppEndpoints.baseUrl}$path'),
+      //     data: data,
+      //     options: options,
+      //   );
+      // } catch (_) {
+      //   return null;
+      // }
+      // } else {
+      // }
+      return e.response;
+    } on SocketException catch (_) {
+      return null;
+    } on Exception catch (_) {
+      return null;
+    }
   }
 
-  void _initApiClient() {
-    dio
-      // ..interceptors.add(LogInterceptor())
-      ..interceptors.add(
-        PrettyDioLogger(
-          requestBody: true,
-          responseBody: true,
-          requestHeader: true,
-          error: true,
-          compact: false))
-      ..options.baseUrl = Endpoints.baseUrl;
-
-    dio.interceptors.add(InterceptorsWrapper(
-     
-      onRequest: (options, handler) {
-      // Do something before request is sent
-      
-      options.headers[""] = KeyUtil.token;
-
-      return handler.next(options); //continue
-      // If you want to resolve the request with some custom data，
-      // you can resolve a `Response` object eg: return `dio.resolve(response)`.
-      // If you want to reject the request with a error message,
-      // you can reject a `DioError` object eg: return `dio.reject(dioError)`
-    }, onResponse: (response, handler) {
-      // Do something with response data
-      return handler.next(response); // continue
-      // If you want to reject the request with a error message,
-      // you can reject a `DioError` object eg: return `dio.reject(dioError)`
-    }, onError: (DioError e, handler) {
-      // Do something with response error
-      return handler.next(e); //continue
-      // If you want to resolve the request with some custom data，
-      // you can resolve a `Response` object eg: return `dio.resolve(response)`.
-    }));
+  Future<Response?> putRequestHandler(
+    String path,
+    Map<String, dynamic> data, {
+    Options? options,
+  }) async {
+    try {
+      final a = await _dio.putUri(
+        Uri.parse('${KeyUtil.baseUrl}$path'),
+        data: data,
+        options: options,
+      );
+      log(a.data.toString());
+      return a;
+    } on DioException catch (e) {
+      log(e.response.toString());
+      // if (e.response?.statusCode == 401 && e.response != null) {
+      //   await PostRequest.refreshToken();
+      //   try {
+      //     return await _dio.putUri(
+      //       Uri.parse('${AppEndpoints.baseUrl}$path'),
+      //       data: data,
+      //       options: options,
+      //     );
+      //   } catch (_) {
+      //     return null;
+      //   }
+      // } else {
+      // }
+      return e.response;
+    } on SocketException catch (_) {
+      return null;
+    } on Exception catch (_) {
+      return null;
+    }
   }
 
-  Future<Response> get(
-      {required Paths path, Map<String, dynamic>? params}) async {
-    print(path.toString());
-    return await dio.get(path.toString(), queryParameters: params);
+  Future<Response?> getRequestHandler(
+    String path, {
+    Options? options,
+    Map<String, dynamic>? data,
+  }) async {
+    try {
+      final a = await _dio.getUri(
+        Uri.parse('${KeyUtil.baseUrl}$path'),
+        data: data,
+        options: options,
+      );
+      log(a.data.toString());
+      return a;
+    } on DioException catch (e) {
+      log(e.response.toString());
+      // if (e.response?.statusCode == 401 && e.response != null) {
+      //   await PostRequest.refreshToken();
+      //   try {
+      //     return await _dio.getUri(
+      //       Uri.parse('${AppEndpoints.baseUrl}$path'),
+      //       data: data,
+      //       options: options,
+      //     );
+      //   } catch (_) {
+      //     return null;
+      //   }
+      // } else {
+      // }
+      return e.response;
+    } on SocketException catch (_) {
+      return null;
+    } on Exception catch (_) {
+      return null;
+    }
   }
 }

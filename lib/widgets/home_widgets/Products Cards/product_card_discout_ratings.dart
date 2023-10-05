@@ -7,11 +7,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProductCardTypeDiscountLessRating extends ConsumerWidget {
-  final int index;
   const ProductCardTypeDiscountLessRating({
-    Key? key,
     required this.index,
+    Key? key,
   }) : super(key: key);
+  final int index;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,15 +26,17 @@ class ProductCardTypeDiscountLessRating extends ConsumerWidget {
               flex: counter == 0 ? 9 : 7,
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(5),
-                      topRight: Radius.circular(5),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(5),
+                    topRight: Radius.circular(5),
+                  ),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      GlobalVariables.categoryImages[index]['image']!,
                     ),
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          GlobalVariables.categoryImages[index]['image']!,
-                        ))),
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -50,7 +52,7 @@ class ProductCardTypeDiscountLessRating extends ConsumerWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
-                            'description ashvdhdv fsanfvsdsds hvfhwvewhfb jbewjavweubfuhcbwe',
+                            'description ashvdhdv fsanfvsdsds hvfhwvewhfb jb',
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: GoogleFonts.nunito(
@@ -68,7 +70,7 @@ class ProductCardTypeDiscountLessRating extends ConsumerWidget {
                           children: [
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5),
-                              child: Text("Rating:"),
+                              child: Text('Rating:'),
                             ),
                             RatingBar.builder(
                               unratedColor:
@@ -76,11 +78,9 @@ class ProductCardTypeDiscountLessRating extends ConsumerWidget {
                               itemSize: 19,
                               initialRating: 3,
                               minRating: 1,
-                              direction: Axis.horizontal,
                               allowHalfRating: true,
-                              itemCount: 5,
                               itemPadding:
-                                  const EdgeInsets.symmetric(horizontal: 2.0),
+                                  const EdgeInsets.symmetric(horizontal: 2),
                               itemBuilder: (context, _) => const Icon(
                                 Icons.star,
                                 color: Colors.amber,
@@ -117,86 +117,92 @@ class ProductCardTypeDiscountLessRating extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    counter == 0
-                        ? CustomButton(
-                            text: 'Add To Cart',
-                            onpressed: () =>
-                                ref.read(stateProviderInteger0.notifier).state++,
-                            thickLine: 1,
-                            color: const Color(0xfff4dc51),
-                            textcolor: Colors.black,
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    if (counter == 0)
+                      CustomButton(
+                        text: 'Add To Cart',
+                        onpressed: () =>
+                            ref.read(stateProviderInteger0.notifier).state++,
+                        thickLine: 1,
+                        color: const Color(0xfff4dc51),
+                        textcolor: Colors.black,
+                      )
+                    else
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
                             children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: Material(
-                                      borderRadius: BorderRadius.circular(30),
-                                      elevation: 1,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(30),
-                                        onTap: () => ref
-                                            .read(stateProviderInteger0.notifier)
-                                            .state--,
-                                        child: Container(
-                                          height: 32,
-                                          width: 32,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                          ),
-                                          child: const Icon(
-                                            Icons.remove,
-                                            color: Color.fromARGB(
-                                                255, 183, 39, 28),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text(
-                                    '$counter',
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ],
-                              ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 5),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 5,
+                                ),
                                 child: Material(
                                   borderRadius: BorderRadius.circular(30),
                                   elevation: 1,
-                                  child: Container(
-                                    height: 32,
-                                    width: 32,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    child: InkWell(
-                                      borderRadius: BorderRadius.circular(30),
-                                      onTap: () => ref
-                                          .read(stateProviderInteger0.notifier)
-                                          .state++,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(30),
+                                    onTap: () => ref
+                                        .read(
+                                          stateProviderInteger0.notifier,
+                                        )
+                                        .state--,
+                                    child: Container(
+                                      height: 32,
+                                      width: 32,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
                                       child: const Icon(
-                                        Icons.add,
-                                        color: Color.fromARGB(255, 53, 120, 55),
+                                        Icons.remove,
+                                        color: Color.fromARGB(
+                                          255,
+                                          183,
+                                          39,
+                                          28,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Text(
+                                '$counter',
+                                style: GoogleFonts.nunito(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
                             ],
-                          )
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(30),
+                              elevation: 1,
+                              child: Container(
+                                height: 32,
+                                width: 32,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(30),
+                                  onTap: () => ref
+                                      .read(stateProviderInteger0.notifier)
+                                      .state++,
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Color.fromARGB(255, 53, 120, 55),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                   ],
                 ),
               ),

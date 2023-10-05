@@ -1,6 +1,5 @@
+import 'package:bubu_market/constants/Utils.dart';
 import 'package:flutter/material.dart';
-
-import '../../../constants/Utils.dart';
 
 class ProductPopularBrands extends StatefulWidget {
   const ProductPopularBrands({super.key});
@@ -16,7 +15,7 @@ class _ProductPopularBrandsState extends State<ProductPopularBrands> {
     return Container(
       decoration:  BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        image: const DecorationImage(image: AssetImage("assets/images/samsung.png"))
+        image: const DecorationImage(image: AssetImage('assets/images/samsung.png')),
         
         ),
     );

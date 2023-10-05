@@ -1,47 +1,43 @@
+import 'package:bubu_market/constants/colors.dart';
 import 'package:bubu_market/models/state_provider_model.dart';
+import 'package:bubu_market/widgets/home_widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../constants/colors.dart';
-import '../custom_button.dart';
-
 class ProductCardType3 extends ConsumerWidget {
-  final bool? rating;
-  final bool? discount;
-  final int index;
   const ProductCardType3({
-    Key? key,
     required this.index,
+    Key? key,
     this.rating,
     this.discount = true,
   }) : super(key: key);
-
-
-
- 
+  final bool? rating;
+  final bool? discount;
+  final int index;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-            final counter = ref.watch(stateProviderInteger3);
+    final counter = ref.watch(stateProviderInteger3);
     return Card(
       elevation: 1,
       child: Column(
         children: [
           Expanded(
             flex: 5,
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
-                 borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(5),
-                    topRight: Radius.circular(5),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(5),
+                  topRight: Radius.circular(5),
+                ),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    GlobalVariables.categoryImages[index]['image']!,
                   ),
-                  image: DecorationImage(
-                    
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        GlobalVariables.categoryImages[index]['image']!,
-                      ))),
+                ),
+              ),
               child: Align(
                 alignment: Alignment.topRight,
                 child: Padding(
@@ -57,7 +53,7 @@ class ProductCardType3 extends ConsumerWidget {
                     padding: const EdgeInsets.all(5),
                     height: 22,
                     child: Text(
-                      "40% OFF",
+                      '40% OFF',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.nunito(
                         fontSize: 14,
@@ -82,7 +78,7 @@ class ProductCardType3 extends ConsumerWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: Text(
-                          'description ashvdhdv fsanfvsdsds hvfhwvewhfb jbewjavweubfuhcbwe',
+                          'description ashvdhdv fsanfvsdsds hvfhwvewhfb jbewj',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: GoogleFonts.nunito(
@@ -117,21 +113,24 @@ class ProductCardType3 extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  counter == 0
-                      ? CustomButton(
-                          text: 'Add To Wishlist',
-                          onpressed: () => ref.read(stateProviderInteger3.notifier).state++,
-                          thickLine: 1,
-                          color: const Color(0xfff4dc51),
-                          textcolor: Colors.black,
-                        )
-                      : CustomButton(
-                          text: 'Remove from  wishlist',
-                          onpressed: ()  => ref.read(stateProviderInteger3.notifier).state--,
-                          thickLine: 1,
-                          color: const Color(0xfff4dc51),
-                          textcolor: Colors.black,
-                        )
+                  if (counter == 0)
+                    CustomButton(
+                      text: 'Add To Wishlist',
+                      onpressed: () =>
+                          ref.read(stateProviderInteger3.notifier).state++,
+                      thickLine: 1,
+                      color: const Color(0xfff4dc51),
+                      textcolor: Colors.black,
+                    )
+                  else
+                    CustomButton(
+                      text: 'Remove from  wishlist',
+                      onpressed: () =>
+                          ref.read(stateProviderInteger3.notifier).state--,
+                      thickLine: 1,
+                      color: const Color(0xfff4dc51),
+                      textcolor: Colors.black,
+                    )
                 ],
               ),
             ),

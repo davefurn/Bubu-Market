@@ -1,7 +1,6 @@
+import 'package:bubu_market/constants/colors.dart';
+import 'package:bubu_market/widgets/accounts_widgets/single_product.dart';
 import 'package:flutter/material.dart';
-
-import '../../constants/colors.dart';
-import 'single_product.dart';
 
 class Orders extends StatefulWidget {
   const Orders({super.key});
@@ -13,14 +12,13 @@ class Orders extends StatefulWidget {
 class _OrdersState extends State<Orders> {
   //temporary list
   List list = [
-    "https://images.unsplash.com/photo-1530204300372-1eddee84dfb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    "https://images.unsplash.com/photo-1530204300372-1eddee84dfb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    "https://images.unsplash.com/photo-1530204300372-1eddee84dfb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    "https://images.unsplash.com/photo-1530204300372-1eddee84dfb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+    'https://images.unsplash.com/photo-1530204300372-1eddee84dfb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+    'https://images.unsplash.com/photo-1530204300372-1eddee84dfb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+    'https://images.unsplash.com/photo-1530204300372-1eddee84dfb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+    'https://images.unsplash.com/photo-1530204300372-1eddee84dfb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
   ];
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,19 +57,16 @@ class _OrdersState extends State<Orders> {
           padding: const EdgeInsets.only(
             left: 10,
             top: 20,
-            right: 0,
+          
           ),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: list.length,
-            itemBuilder: ((context, index) {
-              return SingeProduct(
+            itemBuilder: (context, index) => SingeProduct(
                 image: list[index],
-              );
-            }),
+              ),
           ),
         )
       ],
     );
-  }
 }

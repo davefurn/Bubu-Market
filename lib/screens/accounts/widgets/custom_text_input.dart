@@ -1,10 +1,38 @@
-import 'package:bubu_market/constants/colors.dart';
+import 'package:bubu_market/constants/Utils.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants/Utils.dart';
-
 class CustomTextInput extends StatelessWidget {
-  
+  const CustomTextInput({
+    required this.titleText,
+    required this.validate,
+    Key? key,
+    this.focusNode,
+    this.keyboardType,
+    this.textInputAction,
+    this.readOnly = false,
+    this.autofocus = false,
+    this.obscuringCharacter = '•',
+    this.obscureText = false,
+    this.enableSuggestions = true,
+    this.maxLines = 1,
+    this.maxLength,
+    this.minLines,
+    this.expands = false,
+    this.enabled,
+    this.onChanged,
+    this.controller,
+    this.onEditingComplete,
+    this.onSubmitted,
+    this.onTap,
+    this.hintText = '',
+    this.suffixIcon,
+    this.prefixIcon,
+    this.prefixPath,
+    this.hpD,
+    this.onSaved,
+    this.validator,
+  }) : super(key: key);
+
   final bool validate;
   final double? hpD;
   final IconData? prefixIcon;
@@ -32,36 +60,6 @@ class CustomTextInput extends StatelessWidget {
   final String titleText;
   final String? prefixPath;
   final Widget? suffixIcon;
-  const CustomTextInput({
-    Key? key,
-    this.focusNode,
-    this.keyboardType,
-    this.textInputAction,
-    this.readOnly = false,
-    this.autofocus = false,
-    this.obscuringCharacter = '•',
-    this.obscureText = false,
-    this.enableSuggestions = true,
-    this.maxLines = 1,
-    this.maxLength,
-    this.minLines,
-    this.expands = false,
-    this.enabled,
-    this.onChanged,
-    this.controller,
-    this.onEditingComplete,
-    this.onSubmitted,
-    this.onTap,
-    this.hintText = '',
-    this.suffixIcon,
-    this.prefixIcon,
-    this.prefixPath,
-    required this.titleText,
-    this.hpD,
-    required this.validate,
-    this.onSaved,
-    this.validator,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +79,6 @@ class CustomTextInput extends StatelessWidget {
             height: getProportionateScreenHeight(8),
           ),
           TextFormField(
-            
             controller: controller,
             cursorColor: Colors.black,
             onSaved: onSaved,
@@ -120,9 +117,8 @@ class CustomTextInput extends StatelessWidget {
                       color: Colors.blueGrey,
                     )
                   : null,
-              suffixIcon: null,
               hintText: hintText,
-              fillColor:Colors.grey.shade50,
+              fillColor: Colors.grey.shade50,
               filled: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),

@@ -2,10 +2,10 @@ import 'package:bubu_market/screens/accounts/person_view_model.dart';
 import 'package:bubu_market/screens/accounts/widgets/profile_widget.dart';
 import 'package:bubu_market/screens/accounts/widgets/select_widget.dart';
 import 'package:bubu_market/screens/accounts/widgets/selected_widget.dart';
+import 'package:bubu_market/widgets/general_widgets/permnent_bottom_container.dart';
 import 'package:bubu_market/widgets/home_widgets/recently_viewed_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../widgets/general_widgets/permnent_bottom_container.dart';
 
 class PersonScreen extends ConsumerWidget {
   const PersonScreen({Key? key}) : super(key: key);

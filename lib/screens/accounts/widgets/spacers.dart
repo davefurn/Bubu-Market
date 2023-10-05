@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Spacers extends StatelessWidget {
-  final double height;
   const Spacers({
-    super.key, required this.height,
+    required this.height,
+    super.key,
   });
+  final double height;
 
   @override
-  Widget build(BuildContext context) {
-    return  SizedBox(
-      height: height,
-    );
-  }
+  Widget build(BuildContext context) => SizedBox(
+        height: height,
+      );
 }

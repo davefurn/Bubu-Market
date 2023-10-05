@@ -1,18 +1,15 @@
-import 'package:bubu_market/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class SingeProduct extends StatelessWidget {
+  const SingeProduct({required this.image, super.key});
   final String image;
-  const SingeProduct({super.key, required this.image});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(
-            color: GlobalVariables.colorSecondary,
             width: 1.5,
           ),
           borderRadius: BorderRadius.circular(5),
@@ -26,5 +23,4 @@ class SingeProduct extends StatelessWidget {
         ),
       ),
     );
-  }
 }

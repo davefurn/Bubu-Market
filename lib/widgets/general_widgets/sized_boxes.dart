@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 class SizedBoxes extends StatelessWidget {
-  final double? width;
-  final double? height;
   const SizedBoxes({
     Key? key,  this.width ,  this.height = 10,
   }) : super(key: key);
+  final double? width;
+  final double? height;
 
   @override
-  Widget build(BuildContext context) {
-    return  SizedBox(
+  Widget build(BuildContext context) => SizedBox(
       width: width,
       height:  height,
     );
-  }
 }

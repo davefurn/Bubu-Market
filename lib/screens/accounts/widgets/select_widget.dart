@@ -1,15 +1,13 @@
+import 'package:bubu_market/constants/Utils.dart';
 import 'package:bubu_market/screens/accounts/person_view_model.dart';
+import 'package:bubu_market/screens/accounts/widgets/account_boxes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../constants/Utils.dart';
-import 'account_boxes.dart';
-
 class SelectTabsWidget extends ConsumerWidget {
   const SelectTabsWidget({
-    Key? key,
-    required this.tabIndex,
+    required this.tabIndex, Key? key,
   }) : super(key: key);
 
   
@@ -31,7 +29,7 @@ class SelectTabsWidget extends ConsumerWidget {
       ),
       decoration: BoxDecoration(
         border:
-            Border.all(width: .5, style: BorderStyle.solid, color: Colors.grey),
+            Border.all(width: .5, color: Colors.grey),
         borderRadius: BorderRadius.circular(5),
       ),
       child: ListView(
@@ -45,7 +43,7 @@ class SelectTabsWidget extends ConsumerWidget {
                     ? Colors.yellow.withOpacity(.5)
                     : Colors.transparent,
                 icon: Icons.dashboard_outlined,
-                text: 'Dashboard'),
+                text: 'Dashboard',),
           ),
           GestureDetector(
             onTap: () {
@@ -115,7 +113,7 @@ class SelectTabsWidget extends ConsumerWidget {
                     width: 8,
                   ),
                   Text(
-                    "Logout",
+                    'Logout',
                     style: GoogleFonts.nunito(
                       fontSize: 21,
                       fontWeight: FontWeight.bold,

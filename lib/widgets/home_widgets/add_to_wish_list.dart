@@ -1,11 +1,7 @@
-import 'package:bubu_market/constants/colors.dart';
+import 'package:bubu_market/constants/utils.dart';
 import 'package:bubu_market/widgets/home_widgets/Products%20Cards/product_type_3.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:bubu_market/constants/utils.dart';
-
-import 'Products Cards/product_card_type2.dart';
 
 class AddToYourWishList extends StatelessWidget {
   const AddToYourWishList({super.key});
@@ -16,13 +12,14 @@ class AddToYourWishList extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.only(top: 8),
           child: Container(
             alignment: Alignment.topLeft,
             padding: EdgeInsets.only(
-                left: getProportionateScreenWidth(10),
-                right: getProportionateScreenWidth(10),
-                top: getProportionateScreenHeight(15)),
+              left: getProportionateScreenWidth(10),
+              right: getProportionateScreenWidth(10),
+              top: getProportionateScreenHeight(15),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -54,13 +51,9 @@ class AddToYourWishList extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisExtent: 305,
-            
-              
             ),
             itemCount: 4,
-            itemBuilder: (context, index) {
-              return ProductCardType3(index: index);
-            },
+            itemBuilder: (context, index) => ProductCardType3(index: index),
           ),
         )
       ],

@@ -1,11 +1,8 @@
 
-import 'package:bubu_market/widgets/home_widgets/Products%20Cards/product_card_discout_ratings.dart';
+import 'package:bubu_market/constants/utils.dart';
+import 'package:bubu_market/widgets/home_widgets/Products%20Cards/product_card_type2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:bubu_market/constants/utils.dart';
-
-import 'Products Cards/product_card_type2.dart';
 
 
 class AlmostSoldOut extends StatelessWidget {
@@ -17,7 +14,7 @@ class AlmostSoldOut extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.only(top: 8),
           child: Container(
             height:getProportionateScreenHeight(40),
             width:  double.infinity,
@@ -26,7 +23,7 @@ class AlmostSoldOut extends StatelessWidget {
             padding: EdgeInsets.only(
                 left: getProportionateScreenWidth(10),
                 
-                top: getProportionateScreenHeight(15)),
+                top: getProportionateScreenHeight(15),),
             child: 
                 Text(
                   'Almost Sold Out',
@@ -47,14 +44,10 @@ class AlmostSoldOut extends StatelessWidget {
           child: ListView.builder(
             itemCount: 7,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return ProductCardType2(index: index,);
-            },
+            itemBuilder: (context, index) => ProductCardType2(index: index,),
           ),
         )
       ],
     );
   }
 }
-
-

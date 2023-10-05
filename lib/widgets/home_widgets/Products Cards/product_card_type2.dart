@@ -1,31 +1,23 @@
+import 'package:bubu_market/constants/colors.dart';
+import 'package:bubu_market/models/state_provider_model.dart';
+import 'package:bubu_market/widgets/home_widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../constants/colors.dart';
-import '../../../models/state_provider_model.dart';
-import '../custom_button.dart';
-
 class ProductCardType2 extends ConsumerWidget {
-  final bool? rating;
-  final bool? discount;
-  final int index;
-   ProductCardType2({
-    Key? key,
+  const ProductCardType2({
     required this.index,
+    Key? key,
     this.rating,
     this.discount = true,
   }) : super(key: key);
-
-
- 
-
-
-
-
+  final bool? rating;
+  final bool? discount;
+  final int index;
 
   @override
-  Widget build(BuildContext context , WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final counter = ref.watch(stateProviderInteger2);
     return SizedBox(
       width: 200,
@@ -35,18 +27,19 @@ class ProductCardType2 extends ConsumerWidget {
           children: [
             Expanded(
               flex: counter == 0 ? 7 : 5,
-              child: Container(
+              child: DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(5),
                     topRight: Radius.circular(5),
                   ),
-                    image: DecorationImage(
-                      
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          GlobalVariables.categoryImages[index]['image']!,
-                        ))),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      GlobalVariables.categoryImages[index]['image']!,
+                    ),
+                  ),
+                ),
                 child: Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -62,7 +55,7 @@ class ProductCardType2 extends ConsumerWidget {
                       padding: const EdgeInsets.all(5),
                       height: 22,
                       child: Text(
-                        "40% OFF",
+                        '40% OFF',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.nunito(
                           fontSize: 14,
@@ -87,7 +80,7 @@ class ProductCardType2 extends ConsumerWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
-                            'description ashvdhdv fsanfvsdsds hvfhwvewhfb jbewjavweubfuhcbwe',
+                            'description ashvdhdv fsanfvsdsds hvfhwvewhfb jbew',
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: GoogleFonts.nunito(
@@ -122,28 +115,33 @@ class ProductCardType2 extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    counter == 0
-                        ? CustomButton(
+                    if (counter == 0) CustomButton(
                             text: 'Add To Cart',
-                            onpressed: () => ref.read(stateProviderInteger2.notifier).state++,
+                            onpressed: () => ref
+                                .read(stateProviderInteger2.notifier)
+                                .state++,
                             thickLine: 1,
                             color: const Color(0xfff4dc51),
                             textcolor: Colors.black,
-                          )
-                        : Row(
+                          ) else Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
                                 children: [
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(horizontal: 5),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                    ),
                                     child: Material(
                                       borderRadius: BorderRadius.circular(30),
                                       elevation: 1,
                                       child: InkWell(
                                         borderRadius: BorderRadius.circular(30),
-                                        onTap: () => ref.read(stateProviderInteger2.notifier).state--,
+                                        onTap: () => ref
+                                            .read(
+                                              stateProviderInteger2.notifier,
+                                            )
+                                            .state--,
                                         child: Container(
                                           height: 32,
                                           width: 32,
@@ -153,8 +151,12 @@ class ProductCardType2 extends ConsumerWidget {
                                           ),
                                           child: const Icon(
                                             Icons.remove,
-                                            color:
-                                                Color.fromARGB(255, 183, 39, 28),
+                                            color: Color.fromARGB(
+                                              255,
+                                              183,
+                                              39,
+                                              28,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -186,7 +188,9 @@ class ProductCardType2 extends ConsumerWidget {
                                     ),
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(30),
-                                      onTap: () => ref.read(stateProviderInteger2.notifier).state++,
+                                      onTap: () => ref
+                                          .read(stateProviderInteger2.notifier)
+                                          .state++,
                                       child: const Icon(
                                         Icons.add,
                                         color: Color.fromARGB(255, 53, 120, 55),
