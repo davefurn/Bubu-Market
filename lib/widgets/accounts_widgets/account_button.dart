@@ -2,20 +2,19 @@ import 'package:bubu_market/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class AccountButton extends StatelessWidget {
+  const AccountButton({required this.text, required this.onTap, super.key});
   final String text;
   final VoidCallback onTap;
-  const AccountButton({super.key, required this.text, required this.onTap});
 
   @override
-  Widget build(BuildContext context) {
-    return Expanded(
+  Widget build(BuildContext context) => Expanded(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
         height: 40,
         decoration: BoxDecoration(
           border: Border.all(
             color: GlobalVariables.colorPrimary,
-            width: 0.0,
+            width: 0,
           ),
           borderRadius: BorderRadius.circular(50),
           color: Colors.white,
@@ -39,5 +38,4 @@ class AccountButton extends StatelessWidget {
         ),
       ),
     );
-  }
 }

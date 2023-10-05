@@ -5,41 +5,60 @@ class GlobalVariables {
   static const colorPrimary = Color(0xfff1d100);
   static const colorSecondary = Colors.black;
   static const scaffoldBackGroundColor = Colors.white;
-   static const unselectedTransparent = Colors.transparent;
-  static const appBarGradient = LinearGradient(colors: [
-    Color.fromARGB(255, 29, 201, 192),
-    Color.fromARGB(255, 125, 221, 216),
-  ]);
+  static const unselectedTransparent = Colors.transparent;
+  static const appBarGradient = LinearGradient(
+    colors: [
+      Color.fromARGB(255, 29, 201, 192),
+      Color.fromARGB(255, 125, 221, 216),
+    ],
+  );
 
-   // STATIC IMAGES
+  // STATIC IMAGES
   static const List<String> carouselImages = [
-    'https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/WLA/TS/D37847648_Accessories_savingdays_Jan22_Cat_PC_1500.jpg',
-    'https://images-eu.ssl-images-amazon.com/images/G/31/img2021/Vday/bwl/English.jpg',
-    'https://images-eu.ssl-images-amazon.com/images/G/31/img22/Wireless/AdvantagePrime/BAU/14thJan/D37196025_IN_WL_AdvantageJustforPrime_Jan_Mob_ingress-banner_1242x450.jpg',
-    'https://images-na.ssl-images-amazon.com/images/G/31/Symbol/2020/00NEW/1242_450Banners/PL31_copy._CB432483346_.jpg',
-    'https://images-na.ssl-images-amazon.com/images/G/31/img21/shoes/September/SSW/pc-header._CB641971330_.jpg',
+    'https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80',
+    'https://images.unsplash.com/photo-1523800378286-dae1f0dae656?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80',
   ];
 
   static const List<Map<String, String>> categoryImages = [
     {
-      'title': 'Mobiles',
-      'image': 'assets/images/mobiles.jpeg',
+      'title': 'Electronics',
+      'image': 'assets/images/electronics.jpeg',
     },
     {
-      'title': 'Essentials',
-      'image': 'assets/images/essentials.jpeg',
+      'title': 'Phones &\nAccessories',
+      'image': 'assets/images/phones and accessories.jpeg',
     },
     {
-      'title': 'Appliances',
-      'image': 'assets/images/appliances.jpeg',
+      'title': 'Clothes',
+      'image': 'assets/images/clothes.jpeg',
     },
     {
-      'title': 'Books',
-      'image': 'assets/images/books.jpeg',
+      'title': 'Footwears',
+      'image': 'assets/images/footware.jpeg',
     },
     {
-      'title': 'Fashion',
-      'image': 'assets/images/fashion.jpeg',
+      'title': 'Jewelries',
+      'image': 'assets/images/jewelries.jpeg',
+    },
+    {
+      'title': 'Laptops',
+      'image': 'assets/images/laptops.jpeg',
+    },
+    {
+      'title': 'Vehicles',
+      'image': 'assets/images/vehicles.jpeg',
+    },
+    {
+      'title': 'Home Appliances',
+      'image': 'assets/images/home appliances.jpeg',
+    },
+    {
+      'title': 'Sports &\nFitness',
+      'image': 'assets/images/Sports and fitness.jpeg',
+    },
+    {
+      'title': 'Beauty &\nHealth',
+      'image': 'assets/images/beauty and health.jpeg',
     },
   ];
 }

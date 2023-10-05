@@ -1,6 +1,5 @@
+import 'package:bubu_market/widgets/accounts_widgets/account_button.dart';
 import 'package:flutter/material.dart';
-
-import 'account_button.dart';
 
 class TopButtons extends StatefulWidget {
   const TopButtons({super.key});
@@ -11,37 +10,35 @@ class TopButtons extends StatefulWidget {
 
 class _TopButtonsState extends State<TopButtons> {
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            AccountButton(
-              text: 'Your Orders',
-              onTap: () {},
-            ),
-            AccountButton(
-              text: 'Turn Seller',
-              onTap: () {},
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 10,
-        ), 
-         Row(
-          children: [
-            AccountButton(
-              text: 'Log Out',
-              onTap: () {},
-            ),
-            AccountButton(
-              text: 'Your Wish List',
-              onTap: () {},
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => Column(
+        children: [
+          Row(
+            children: [
+              AccountButton(
+                text: 'Your Orders',
+                onTap: () {},
+              ),
+              AccountButton(
+                text: 'Turn Seller',
+                onTap: () {},
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              AccountButton(
+                text: 'Log Out',
+                onTap: () {},
+              ),
+              AccountButton(
+                text: 'Your Wish List',
+                onTap: () {},
+              ),
+            ],
+          ),
+        ],
+      );
 }
